@@ -27,33 +27,71 @@ export const RSS_FEEDS = [
     url: "https://feeds.reuters.com/reuters/businessNews",
     source: "Reuters",
     category: "economy",
-    label: "EKONOMI",
+    label: "FOREIGN ECONOMY",
   },
   {
     url: "https://www.ft.com/rss/home/uk",
     source: "Financial Times",
     category: "economy",
-    label: "EKONOMI",
+    label: "FOREIGN ECONOMY",
   },
   {
     url: "https://feeds.bloomberg.com/markets/news.rss",
     source: "Bloomberg",
     category: "economy",
-    label: "EKONOMI",
+    label: "FOREIGN ECONOMY",
   },
 
   // Indonesia Economy
   {
-    url: "https://news.detik.com/berita/rss",
-    source: "Detik.com",
-    category: "economy",
-    label: "EKONOMI",
+    url: "https://www.republika.co.id/rss/ekonomi/",
+    source: "Republika.com",
+    category: "indonesiaEconomy",
+    label: "INDONESIA ECONOMY",
   },
   {
     url: "https://rss.tempo.co/bisnis",
     source: "Tempo.com",
-    category: "economy",
-    label: "EKONOMI",
+    category: "indonesiaEconomy",
+    label: "INDONESIA ECONOMY",
+  },
+  {
+    url: "https://www.cnbcindonesia.com/market/rss/",
+    source: "CNBC Indonesia",
+    category: "indonesiaEconomy",
+    label: "INDONESIA ECONOMY",
+  },
+  {
+    url: "https://muratara.jurnalis.id/rss/category-id/14",
+    source: "Jurnalis.id",
+    category: "indonesiaEconomy",
+    label: "INDONESIA ECONOMY",
+  },
+
+  // Indonesia News
+  {
+    url: "https://rss.kompas.com/api/feed/social?apikey=bc58c81819dff4b8d5c53540a2fc7ffd83e6314a",
+    source: "Kompas.com",
+    category: "news",
+    label: "INDONESIA NEWS",
+  },
+  {
+    url: "https://rss.tempo.co/bisnis",
+    source: "Tempo.com",
+    category: "news",
+    label: "INDONESIA NEWS",
+  },
+  {
+    url: "https://news.detik.com/berita/rss",
+    source: "Detik.com",
+    category: "news",
+    label: "INDONESIA NEWS",
+  },
+  {
+    url: "https://muratara.jurnalis.id/rss/latest-posts",
+    source: "Jurnalis.id",
+    category: "news",
+    label: "INDONESIA NEWS",
   },
 
   // Geopolitics
@@ -61,25 +99,25 @@ export const RSS_FEEDS = [
     url: "https://feeds.reuters.com/reuters/worldNews",
     source: "Reuters World",
     category: "geopolitics",
-    label: "GEOPOLITIK",
+    label: "GEOPOLITICS",
   },
   {
     url: "https://rss.dw.com/rdf/rss-en-world",
     source: "DW",
     category: "geopolitics",
-    label: "GEOPOLITIK",
+    label: "GEOPOLITICS",
   },
   {
     url: "https://www.aljazeera.com/xml/rss/all.xml",
     source: "Al Jazeera",
     category: "geopolitics",
-    label: "GEOPOLITIK",
+    label: "GEOPOLITICS",
   },
   {
     url: "https://foreignpolicy.com/feed/",
     source: "Foreign Policy",
     category: "geopolitics",
-    label: "GEOPOLITIK",
+    label: "GEOPOLITICS",
   },
 ];
 
