@@ -33,6 +33,9 @@ html, body {
   line-height: 1.5;
   height: 100%;
   overflow: hidden;
+  /* iOS safe area */
+  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) 0 env(safe-area-inset-left, 0);
+  -webkit-text-size-adjust: 100%;
 }
 
 #__next, main { height: 100%; }
