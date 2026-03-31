@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, forwardRef } from "react";
 import type { NewsItem } from "@/lib/feeds";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -298,7 +298,7 @@ function DetailPane({ item, onAskAI }: { item: NewsItem | null; onAskAI: (q: str
   );
 }
 
-function ChatPane({ news }: { news: NewsItem[] }) {
+const ChatPane = forwardRef<{ sendMessage: (q: string) => void }, { news: NewsItem[] }>(function ChatPane({ news }, ref) {
   const [msgs, setMsgs] = useState<ChatMsg[]>([
     {
       role: "assistant",
@@ -451,7 +451,7 @@ function ChatPane({ news }: { news: NewsItem[] }) {
       </div>
     </div>
   );
-}
+});
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export default function Terminal() {
@@ -571,7 +571,7 @@ export default function Terminal() {
       }}>
         <span style={{ color: "#000", fontSize: "10px", fontWeight: 600, letterSpacing: "1px" }}>● LIVE</span>
         <span style={{ color: "#3a2800", fontSize: "10px" }}>
-          {news.length} berita dari {[...new Set(news.map((n) => n.source))].length} sumber
+          {news.length} berita dari {Array.from(new Set(news.map((n) => n.source))).length} sumber
         </span>
         <span style={{ marginLeft: "auto", color: "#3a2800", fontSize: "10px" }}>
           DATA DIPERBARUI SETIAP 10 MENIT · BERITA GRATIS VIA RSS
