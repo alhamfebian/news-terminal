@@ -72,25 +72,25 @@ export const RSS_FEEDS = [
   {
     url: "https://rss.kompas.com/api/feed/social?apikey=bc58c81819dff4b8d5c53540a2fc7ffd83e6314a",
     source: "Kompas.com",
-    category: "news",
+    category: "indonesiaNews",
     label: "INDONESIA NEWS",
   },
   {
     url: "https://rss.tempo.co/bisnis",
     source: "Tempo.com",
-    category: "news",
+    category: "indonesiaNews",
     label: "INDONESIA NEWS",
   },
   {
     url: "https://news.detik.com/berita/rss",
     source: "Detik.com",
-    category: "news",
+    category: "indonesiaNews",
     label: "INDONESIA NEWS",
   },
   {
     url: "https://muratara.jurnalis.id/rss/latest-posts",
     source: "Jurnalis.id",
-    category: "news",
+    category: "indonesiaNews",
     label: "INDONESIA NEWS",
   },
 

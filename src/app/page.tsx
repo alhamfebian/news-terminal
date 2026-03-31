@@ -42,7 +42,7 @@ const CAT_LABELS: Record<Cat, string> = {
   all: "SEMUA", food: "PANGAN", economy: "EKONOMI", geopolitics: "GEOPOLITIK",
 };
 const CAT_COLORS: Record<string, string> = {
-  food: "#1ec494", economy: "#3080e0", geopolitics: "#e84050",
+  food: "#1ec494", economy: "#3080e0", geopolitics: "#e84050", indonesiaEconomy: "#e07b24", indonesiaNews: "#dfe21c",
 };
 const QUICK_PROMPTS = [
   "Rangkum 3 berita terpenting hari ini",
