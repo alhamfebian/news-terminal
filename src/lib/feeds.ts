@@ -44,14 +44,14 @@ export const RSS_FEEDS = [
 
   // Indonesia Economy
   {
-    url: "https://www.kontan.co.id/rss/ekonomi",
-    source: "Kontan",
+    url: "https://news.detik.com/berita/rss",
+    source: "Detik.com",
     category: "economy",
     label: "EKONOMI",
   },
   {
-    url: "https://ekonomi.bisnis.com/feed",
-    source: "Bisnis.com",
+    url: "https://rss.tempo.co/bisnis",
+    source: "Tempo.com",
     category: "economy",
     label: "EKONOMI",
   },
