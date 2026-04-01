@@ -173,7 +173,7 @@ export type NewsItem = {
   link: string;
   pubDate: string;
   source: string;
-  category: "food" | "economy" | "geopolitics";
+  category: "food" | "economy" | "geopolitics" | "technology" | "socialMedia" | "indonesiaEconomy" | "indonesiaNews";
   label: string;
   summary: string;
   isoDate: string;

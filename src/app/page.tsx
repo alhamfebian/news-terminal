@@ -82,7 +82,7 @@ function TopBar({ count, lastRefresh, onRefresh, loading, isMobile }: {
       </span>
       {!isMobile && (
         <span style={{ color: "var(--text-2)", fontSize: "10px", letterSpacing: "1px" }}>
-          PANGAN · EKONOMI · GEOPOLITIK
+          PANGAN · EKONOMI · GEOPOLITIK · TEKNOLOGI · SOSIAL MEDIA · EKONOMI INDONESIA · BERITA INDONESIA
         </span>
       )}
       <div style={{ flex: 1 }} />
@@ -518,9 +518,9 @@ export default function Terminal() {
             <>
               {filtered.map((item) => (
                 <NewsRow
-                  key={item.id}
+                  key={item.link}
                   item={item}
-                  selected={selectedItem?.id === item.id}
+                  selected={selectedItem?.category === item.category}
                   onClick={() => handleSelectNews(item)}
                   isMobile
                 />
@@ -646,7 +646,7 @@ export default function Terminal() {
           ) : (
             <div style={{ flex: 1, overflowY: "auto" }}>
               {filtered.map(item => (
-                <NewsRow key={item.id} item={item} selected={selectedItem?.id === item.id} onClick={() => handleSelectNews(item)} isMobile={false} />
+                <NewsRow key={item.link} item={item} selected={selectedItem?.category === item.category} onClick={() => handleSelectNews(item)} isMobile={false} />
               ))}
             </div>
           )}
