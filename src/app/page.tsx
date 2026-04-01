@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import type { NewsItem } from "@/lib/feeds";
 
-type Cat = "all" | "food" | "economy" | "geopolitics";
+type Cat = "all" | "food" | "economy" | "geopolitics" | "technology" | "socialMedia" | "indonesiaEconomy" | "indonesiaNews";
 type ChatMsg = { role: "user" | "assistant"; content: string };
 type Sheet = null | "detail" | "chat";
 
@@ -39,10 +39,10 @@ function fmtTime(iso: string): string {
 }
 
 const CAT_LABELS: Record<Cat, string> = {
-  all: "SEMUA", food: "PANGAN", economy: "EKONOMI", geopolitics: "GEOPOLITIK",
+  all: "SEMUA", food: "PANGAN", economy: "EKONOMI", geopolitics: "GEOPOLITIK", technology: "TEKNOLOGI", socialMedia: "SOSIAL MEDIA", indonesiaEconomy: "EKONOMI INDONESIA", indonesiaNews: "BERITA INDONESIA"
 };
 const CAT_COLORS: Record<string, string> = {
-  food: "#1ec494", economy: "#3080e0", geopolitics: "#e84050", indonesiaEconomy: "#e07b24", indonesiaNews: "#dfe21c",
+  food: "#1ec494", economy: "#3080e0", geopolitics: "#e84050", technology: "#ff6b6b", socialMedia: "#4ecdc4", indonesiaEconomy: "#ffa502", indonesiaNews: "#00bfff"
 };
 const QUICK_PROMPTS = [
   "Rangkum 3 berita terpenting hari ini",
@@ -410,7 +410,21 @@ function ChatContent({ news, isMobile }: { news: NewsItem[]; isMobile: boolean }
 // STATUS BAR
 // ═════════════════════════════════════════════════════════════════════════════
 
-function StatusBar({ news }: { news: NewsItem[] }) {
+function StatusBar({ news, nextRefresh }: { news: NewsItem[]; nextRefresh: number | null }) {
+  const [countdown, setCountdown] = useState("");
+  useEffect(() => {
+    const tick = () => {
+      if (!nextRefresh) { setCountdown(""); return; }
+      const diff = Math.max(0, nextRefresh - Date.now());
+      const m = Math.floor(diff / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      setCountdown(`refresh dalam ${m}:${String(s).padStart(2, "0")}`);
+    };
+    tick();
+    const t = setInterval(tick, 1000);
+    return () => clearInterval(t);
+  }, [nextRefresh]);
+
   return (
     <div style={{
       background: "var(--gold)", padding: "3px 14px",
@@ -420,7 +434,9 @@ function StatusBar({ news }: { news: NewsItem[] }) {
       <span style={{ color: "#3a2800", fontSize: "10px" }}>
         {news.length} berita · {Array.from(new Set(news.map(n => n.source))).length} sumber
       </span>
-      <span style={{ marginLeft: "auto", color: "#3a2800", fontSize: "10px" }}>DIPERBARUI SETIAP 10 MENIT</span>
+      <span style={{ marginLeft: "auto", color: "#3a2800", fontSize: "10px" }}>
+        {countdown || "DIPERBARUI SETIAP 10 MENIT"}
+      </span>
     </div>
   );
 }
@@ -441,17 +457,27 @@ export default function Terminal() {
   const [sheet, setSheet] = useState<Sheet>(null);         // mobile bottom sheet
   const [rightPane, setRightPane] = useState<"detail" | "chat">("detail"); // desktop
 
-  const fetchNews = useCallback(async () => {
-    setLoading(true);
+  const [nextRefresh, setNextRefresh] = useState<number | null>(null);
+
+  const fetchNews = useCallback(async (silent = false) => {
+    if (!silent) setLoading(true);
     try {
       const res = await fetch("/api/news");
       const data = await res.json();
       setNews(data.items || []);
       setLastRefresh(new Date());
-    } catch { /* keep */ } finally { setLoading(false); }
+      if (data.nextRefresh) setNextRefresh(data.nextRefresh);
+    } catch { /* keep existing */ } finally { if (!silent) setLoading(false); }
   }, []);
 
+  // Initial fetch
   useEffect(() => { fetchNews(); }, [fetchNews]);
+
+  // Auto-refresh every 10 minutes — silently updates in background
+  useEffect(() => {
+    const interval = setInterval(() => fetchNews(true), 10 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, [fetchNews]);
 
   const filtered = activeCat === "all" ? news : news.filter(n => n.category === activeCat);
   const counts = news.reduce<Record<string, number>>((acc, n) => {
@@ -662,7 +688,7 @@ export default function Terminal() {
         </div>
       </div>
 
-      <StatusBar news={news} />
+      <StatusBar news={news} nextRefresh={nextRefresh} />
     </div>
   );
 }

@@ -3,6 +3,12 @@ import { NextResponse } from "next/server";
 import Parser from "rss-parser";
 import { RSS_FEEDS, NewsItem } from "@/lib/feeds";
 
+// Tell Next.js to revalidate this route every 10 minutes.
+// Works on Netlify with @netlify/plugin-nextjs.
+export const revalidate = 600;
+
+const CACHE_TTL = 10 * 60 * 1000;
+
 const parser = new Parser({
   timeout: 8000,
   headers: {
@@ -11,9 +17,8 @@ const parser = new Parser({
   },
 });
 
-// Cache in memory for 10 minutes to avoid hammering RSS feeds
-let cache: { data: NewsItem[]; ts: number } | null = null;
-const CACHE_TTL = 10 * 60 * 1000;
+// Module-level cache — effective in local dev / long-lived server environments
+let _cache: { data: NewsItem[]; ts: number } | null = null;
 
 function stripHtml(html: string): string {
   return (html || "")
@@ -24,15 +29,11 @@ function stripHtml(html: string): string {
 }
 
 function makeId(item: { link?: string; title?: string }): string {
-  return Buffer.from((item.link || item.title || Math.random().toString())).toString("base64").slice(0, 16);
+  const raw = item.link || item.title || Math.random().toString();
+  return Buffer.from(raw).toString("base64").slice(0, 16);
 }
 
-export async function GET() {
-  // Return cache if fresh
-  if (cache && Date.now() - cache.ts < CACHE_TTL) {
-    return NextResponse.json({ items: cache.data, cached: true });
-  }
-
+async function fetchAllFeeds(): Promise<NewsItem[]> {
   const results: NewsItem[] = [];
 
   await Promise.allSettled(
@@ -57,19 +58,33 @@ export async function GET() {
     })
   );
 
-  // Sort by date, newest first
   results.sort((a, b) => new Date(b.isoDate).getTime() - new Date(a.isoDate).getTime());
 
-  // Deduplicate by title similarity
   const seen = new Set<string>();
-  const deduped = results.filter((item) => {
+  return results.filter((item) => {
     const key = item.title.slice(0, 60).toLowerCase();
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
   });
+}
 
-  cache = { data: deduped, ts: Date.now() };
+export async function GET() {
+  if (_cache && Date.now() - _cache.ts < CACHE_TTL) {
+    return NextResponse.json({
+      items: _cache.data,
+      cached: true,
+      nextRefresh: _cache.ts + CACHE_TTL,
+    });
+  }
 
-  return NextResponse.json({ items: deduped, cached: false });
+  const data = await fetchAllFeeds();
+  const ts = Date.now();
+  _cache = { data, ts };
+
+  return NextResponse.json({
+    items: data,
+    cached: false,
+    nextRefresh: ts + CACHE_TTL,
+  });
 }

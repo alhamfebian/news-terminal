@@ -119,6 +119,52 @@ export const RSS_FEEDS = [
     category: "geopolitics",
     label: "GEOPOLITICS",
   },
+
+  // Technology News
+  {
+    url: "https://feeds.macrumors.com/MacRumors-All",
+    source: "Mac Rumors",
+    category: "technology",
+    label: "TECHNOLOGY",
+  },
+  {
+    url: "https://www.wired.com/feed/rss",
+    source: "Wired",
+    category: "technology",
+    label: "TECHNOLOGY",
+  },
+  {
+    url: "https://www.theverge.com/rss/index.xml",
+    source: "The Verge",
+    category: "technology",
+    label: "TECHNOLOGY",
+  },
+  {
+    url: "https://techcrunch.com/feed/",
+    source: "TechCrunch",
+    category: "technology",
+    label: "TECHNOLOGY",
+  },
+
+  // Social Media News
+  {
+    url: "https://www.socialmediatoday.com/feeds/news/",
+    source: "Social Media Today",
+    category: "socialMedia",
+    label: "SOCIAL MEDIA",
+  },
+  {
+    url: "https://blog.hubspot.com/marketing/rss.xml",
+    source: "Hubspot",
+    category: "socialMedia",
+    label: "SOCIAL MEDIA",
+  },
+  {
+    url: "https://www.ignitesocialmedia.com/feed/",
+    source: "Ignite Social Media",
+    category: "socialMedia",
+    label: "SOCIAL MEDIA",
+  },
 ];
 
 export type NewsItem = {
