@@ -4,13 +4,7 @@
 export const RSS_FEEDS = [
   // Food Industry
   {
-    url: "https://www.foodnavigator.com/rss/topic/industry",
-    source: "FoodNavigator",
-    category: "food",
-    label: "FOOD",
-  },
-  {
-    url: "https://www.foodbusinessnews.net/rss/news",
+    url: "https://www.foodbusinessnews.net/rss/topic/413-latest-news",
     source: "Food Business News",
     category: "food",
     label: "FOOD",
@@ -18,6 +12,18 @@ export const RSS_FEEDS = [
   {
     url: "https://www.just-food.com/feed/",
     source: "Just Food",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.fooddive.com/feeds/news/",
+    source: "Food Dive",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodsafetynews.com/feed/",
+    source: "Food Safety News",
     category: "food",
     label: "FOOD",
   },
