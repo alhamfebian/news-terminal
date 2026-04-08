@@ -27,14 +27,98 @@ export const RSS_FEEDS = [
     category: "food",
     label: "FOOD",
   },
+  {
+    url: "https://www.foodnavigator-usa.com/arc/outboundfeeds/rss/",
+    source: "Food Navigator USA",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodbusinessnews.net/rss/topic/207-coca-cola-co",
+    source: "Food Business News: Coca Cola",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodbusinessnews.net/rss/topic/209-danone",
+    source: "Food Business News: Danone",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodbusinessnews.net/rss/topic/227-kraft-heinz-co",
+    source: "Food Business News: Kraft Heinz",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodbusinessnews.net/rss/topic/233-nestle",
+    source: "Food Business News: Nestle",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodbusinessnews.net/rss/topic/229-mars",
+    source: "Food Business News: Mars",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodbusinessnews.net/rss/topic/232-mondelez-international",
+    source: "Food Business News: Mondelez International",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodbusinessnews.net/rss/topic/231-mccormick-co",
+    source: "Food Business News: McCormick",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodbusinessnews.net/rss/topic/235-pepsico",
+    source: "Food Business News: Pepsi Co",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodbusinessnews.net/rss/topic/247-unilever",
+    source: "Food Business News: Unilever",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodbusinessnews.net/rss/topic/477-new-food-insider",
+    source: "Food Business News: New Food Insider",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodbusinessnews.net/rss/topic/128-food-safety",
+    source: "Food Business News: Food Safety",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodbusinessnews.net/rss/topic/128-food-safety",
+    source: "Food Business News: Food Safety",
+    category: "food",
+    label: "FOOD",
+  },
+  {
+    url: "https://www.foodbusinessnews.net/rss/topic/128-food-safety",
+    source: "Food Business News: Food Safety",
+    category: "food",
+    label: "FOOD",
+  },
+   {
+    url: "https://www.foodbusinessnews.net/rss/topic/180-retail",
+    source: "Food Business News: Retail",
+    category: "food",
+    label: "FOOD",
+  },
 
   // Economy / Business
-  {
-    url: "https://feeds.reuters.com/reuters/businessNews",
-    source: "Reuters",
-    category: "economy",
-    label: "FOREIGN ECONOMY",
-  },
   {
     url: "https://www.ft.com/rss/home/uk",
     source: "Financial Times",
@@ -67,12 +151,6 @@ export const RSS_FEEDS = [
     category: "indonesiaEconomy",
     label: "INDONESIA ECONOMY",
   },
-  {
-    url: "https://muratara.jurnalis.id/rss/category-id/14",
-    source: "Jurnalis.id",
-    category: "indonesiaEconomy",
-    label: "INDONESIA ECONOMY",
-  },
 
   // Indonesia News
   {
@@ -93,20 +171,8 @@ export const RSS_FEEDS = [
     category: "indonesiaNews",
     label: "INDONESIA NEWS",
   },
-  {
-    url: "https://muratara.jurnalis.id/rss/latest-posts",
-    source: "Jurnalis.id",
-    category: "indonesiaNews",
-    label: "INDONESIA NEWS",
-  },
 
   // Geopolitics
-  {
-    url: "https://feeds.reuters.com/reuters/worldNews",
-    source: "Reuters World",
-    category: "geopolitics",
-    label: "GEOPOLITICS",
-  },
   {
     url: "https://rss.dw.com/rdf/rss-en-world",
     source: "DW",
